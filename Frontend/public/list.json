@@ -5,7 +5,71 @@
         "title":"lorem ipsum dolor sit amet",
         "price":0,
         "category":"Free",
-        "image":""
-        
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":2,
+        "name":"Horror Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":20,
+        "category":"Free",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":3,
+        "name":"Music Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":30,
+        "category":"Free",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":4,
+        "name":"Sports Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":40,
+        "category":"Sports ",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":5,
+        "name":"Food Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":10,
+        "category":"Free",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":6,
+        "name":"Finance Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":60,
+        "category":"Finance",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":7,
+        "name":"Comedy Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":20,
+        "category":"Comdey",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":8,
+        "name":"Mystery Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":40,
+        "category":"Mystery",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
+    },
+    {
+        "id":9,
+        "name":"Historical Book",
+        "title":"lorem ipsum dolor sit amet",
+        "price":70,
+        "category":"Historical",
+        "image":"https://img.freepik.com/premium-photo/books-education_884653-21680.jpg?w=740"
     }
+    
 ]
