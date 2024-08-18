@@ -3,7 +3,7 @@ import React from 'react'
 function Footer() {
   return (
     <div>
-        <footer className="footer footer-center bg-base-200 text-base-content rounded p-10">
+        <footer className="footer footer-center bg-base-200 text-base-content rounded p-10  dark:bg-slate-900 dark:text-white">
   <nav className="grid grid-flow-col gap-4">
     <a className="link link-hover">About us</a>
     <a className="link link-hover">Contact</a>
@@ -48,7 +48,7 @@ function Footer() {
     </div>
   </nav>
   <aside>
-    <p>Copyright © ${new Date().getFullYear()} - All right reserved by ACME Industries Ltd</p>
+    <p>Copyright © ${new Date().getFullYear()} - All right reserved by HARSH Industries Ltd</p>
   </aside>
 </footer>
     </div>
