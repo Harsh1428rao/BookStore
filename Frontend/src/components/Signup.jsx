@@ -6,7 +6,7 @@ function Signup() {
   return (
     <>
       <div >
-        <dialog id="my_modal_3" className="modal-box flex h-screen items-center justify-center">
+        <dialog id="my_modal_4" className="modal-box flex h-screen items-center justify-center  dark:bg-slate-900 dark:text-white ">
           <div className="">
             <form method="dialog">
               {/* Close the modal when this button is clicked */}
@@ -38,8 +38,9 @@ function Signup() {
               </button>
               <p>Have an Account? 
                 <button className='underline text-blue-500 cursor-pointer' onClick={() => document.getElementById("my_modal_3").showModal()}>Login</button>
+                <Login/>
               </p>
-              <Login/>
+    
             </div>
           </div>
         </dialog>
