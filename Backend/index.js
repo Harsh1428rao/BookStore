@@ -1,29 +1,31 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import mongoose from 'mongoose'
+import express from 'express';
+import dotenv from 'dotenv';
+import mongoose from 'mongoose';
+import userRoute from "../Backend/Route/user.route.js";
 
-const app = express()
+const app = express();
+dotenv.config(); // Load environment variables
 
-dotenv.config(); 
-
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const URI = process.env.MongodbURI;
 
-try {
-    mongoose.connect(URI,{
-        useNewUrlParser:true,
-        useUnifiedTopology:true,
-    });
-    console.log("connected to MOngoDB");
-} catch (error) {
-    console.log("Error",error);
-}
+// Middleware to parse incoming requests with JSON payloads
+app.use(express.json());
 
+// Connect to MongoDB
+mongoose.connect(URI)
+    .then(() => console.log("Connected to MongoDB"))
+    .catch((error) => console.error("Error connecting to MongoDB:", error));
 
-app.get('/',(req,res)=>{
-    res.send("hello 345 world");
-})
+// Routes
+app.get('/', (req, res) => {
+    res.send("Hello 345 world");
+});
 
-app.listen(PORT,()=>{
-    console.log(`Server is running ${PORT} `);
+// User routes
+app.use("/users", userRoute);
+
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
