@@ -1,7 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import userRoute from "../Backend/Route/user.route.js";
+import userRoute from "./Route/user.route.js";
 
 const app = express();
 dotenv.config(); // Load environment variables
@@ -23,7 +23,7 @@ app.get('/', (req, res) => {
 });
 
 // User routes
-app.use("/users", userRoute);
+app.use("/user", userRoute);
 
 // Start the server
 app.listen(PORT, () => {
