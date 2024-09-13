@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import axios from 'axios';
 
 function Login() {
   const dialogRef = useRef(null);
@@ -11,12 +12,32 @@ function Login() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
+
+    const UserInfo ={
+      email:data.email,
+      password:data.password
+    }
+
+    await axios
+    .post("http://localhost:4001/user/login",UserInfo)
+    .then((res)=>{
+      console.log(res.data);
+      if(res.data){
+        alert("Login Successfully")
+      }
+    }).catch((err)=>{
+
+      if(err.response){
+        
+        alert("Error: "+err.response);
+      }
+    })
+
+
     console.log(data);
     // Close the modal after successful submission
-    if (dialogRef.current) {
-      dialogRef.current.close();
-    }
+   
   };
 
   return (

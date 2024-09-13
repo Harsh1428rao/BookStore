@@ -3,6 +3,10 @@ import { Link } from 'react-router-dom';
 import Login from "../components/login";
 import { useForm } from "react-hook-form";
 import  { useRef } from 'react';
+import axios from 'axios';
+
+
+
 function Signup() {
   const dialogRef = useRef(null);
 
@@ -12,8 +16,28 @@ function Signup() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log(data);
+    const userInfo = {
+      fullname: data.fullname,
+      email: data.email,
+      password: data.password
+    };
+    await axios
+    .post("http://localhost:4001/user/signup",userInfo)
+    .then((res)=>{
+      console.log(res.data);
+      if(res.data){
+        alert("Signup Successfully");
+      }
+      localStorage.setItem("users",JSON.stringify(res.data.user));
+    }).catch((err)=>{
+
+      if(err.response){
+        
+        alert("Error: "+err.response.data.message);
+      }
+    })
     // Close the modal after successful submission
     if (dialogRef.current) {
       dialogRef.current.close();
@@ -37,10 +61,10 @@ function Signup() {
               type="text" 
               placeholder='Enter your name' 
               className='w-80 px-3 py-1 border rounded-md outline-none'
-              {...register("name", { required: true })} 
+              {...register("fullname", { required: true })} 
               />
               <br/>
-              {errors.email && <span className="text-red-500">Name is required</span>}
+              {errors.fullname && <span className="text-red-500">Name is required</span>}
             </div>
 
             <div className='mt-4 space-y-2'>
@@ -64,7 +88,7 @@ function Signup() {
               className='w-80 px-3 py-1 border rounded-md outline-none' 
               {...register("password", { required: true })}/>
               <br/>
-              {errors.email && <span className="text-red-500">Password is required</span>}
+              {errors.password && <span className="text-red-500">Password is required</span>}
             </div>
 
             <div className='flex justify-around mt-4'>
