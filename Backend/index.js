@@ -2,6 +2,10 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import userRoute from "./Route/user.route.js";
+import cors from 'cors';
+
+
+
 
 const app = express();
 dotenv.config(); // Load environment variables
@@ -11,7 +15,7 @@ const URI = process.env.MongodbURI;
 
 // Middleware to parse incoming requests with JSON payloads
 app.use(express.json());
-
+app.use(cors());
 // Connect to MongoDB
 mongoose.connect(URI)
     .then(() => console.log("Connected to MongoDB"))
