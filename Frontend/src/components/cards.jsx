@@ -28,5 +28,5 @@ function cards({item}) {
     </>
   )
 }
-
+// It is used to create cards on the 
 export default cards
