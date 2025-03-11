@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Login from "../components/login";
 import { useForm } from "react-hook-form";
 import  { useRef } from 'react';
@@ -9,6 +9,9 @@ import axios from 'axios';
 
 function Signup() {
   const dialogRef = useRef(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const {
     register,
@@ -16,33 +19,35 @@ function Signup() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    console.log(data);
-    const userInfo = {
-      fullname: data.fullname,
-      email: data.email,
-      password: data.password
-    };
-    await axios
-    .post("http://localhost:4001/user/signup",userInfo)
-    .then((res)=>{
-      console.log(res.data);
-      if(res.data){
-        alert("Signup Successfully");
-      }
-      localStorage.setItem("users",JSON.stringify(res.data.user));
-    }).catch((err)=>{
-
-      if(err.response){
-        
-        alert("Error: "+err.response.data.message);
-      }
-    })
-    // Close the modal after successful submission
-    if (dialogRef.current) {
-      dialogRef.current.close();
-    }
+ const onSubmit = async (data) => {
+  console.log(data);
+  
+  const userInfo = {
+    fullname: data.fullname,
+    email: data.email,
+    password: data.password
   };
+
+  try {
+    const res = await axios.post("http://localhost:4001/user/signup", userInfo, {//here we are storing the user info through the user signup api where we are taking the data from the req body of the frontend and sending it to the backend through the axios 
+      headers: { "Content-Type": "application/json" } // Ensure JSON format
+    });
+
+    if (res.data) {
+      alert("Signup Successfully");
+      navigate(from, { replace: true });// WITH THE HELP THIS AFTER THE SUCCESFULL SIGNUP WE ARE NAVIGATING THE USER TO THE HOME PAGE 
+      
+      localStorage.setItem("users", JSON.stringify(res.data.user));
+    }
+  } catch (err) {
+    if (err.response) {
+      alert("Error: " + err.response.data.message);
+    } else {
+      console.error(err);
+    }
+  }
+};
+
   return (
     <>
       <div >
@@ -96,10 +101,12 @@ function Signup() {
                 SignUp
               </button>
               <p>Have an Account? 
-                <button className='underline text-blue-500 cursor-pointer' onClick={() => document.getElementById("my_modal_3").showModal()}>Login</button>
-                <Login/>
+                <Link to="/"
+                className="underline text-blue-500 cursor-pointe"
+                onClick={()=>document.getElementById("my_modal_3").showModal()}>
+                  Login
+                </Link>
               </p>
-    
             </div>
             </form>
           </div>

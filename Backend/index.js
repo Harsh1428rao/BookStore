@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import cors from 'cors';
-
+import authRoutes from "./Route/user.route.js";
 import itemRoutes from "./Route/itemRoutes.js"; // Corrected route import
 
 dotenv.config();
@@ -26,8 +26,8 @@ mongoose.connect(URI, {
 });
 
 // Routes
-app.use("/", itemRoutes); // Corrected API path
-
+app.use("/book", itemRoutes); // Corrected API path
+app.use('/user',authRoutes);
 app.get('/', (req, res) => {
     res.send("🚀 Server is running...");
 });
