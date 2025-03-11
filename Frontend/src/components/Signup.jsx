@@ -29,7 +29,7 @@ function Signup() {
   };
 
   try {
-    const res = await axios.post("http://localhost:4001/user/signup", userInfo, {//here we are storing the user info through the user signup api where we are taking the data from the req body of the frontend and sending it to the backend through the axios 
+    const res = await axios.post("https://bookstore-7-7ubp.onrender.com/user/signup", userInfo, {//here we are storing the user info through the user signup api where we are taking the data from the req body of the frontend and sending it to the backend through the axios 
       headers: { "Content-Type": "application/json" } // Ensure JSON format
     });
 
