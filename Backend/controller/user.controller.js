@@ -1,5 +1,5 @@
 import User from "../model/user.model.js";
-import bcrypt from "bcryptjs";
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 // Signup Controller
