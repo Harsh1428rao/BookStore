@@ -35,29 +35,26 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("Request body:", req.body);
 
-    // Ensure email and password are provided
     if (!email || !password) {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Find the user in the database
     const user = await User.findOne({ email });
+    console.log("Found user:", user);
 
-    // If user is not found, return an error
     if (!user) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
 
-    // Compare passwords using bcrypt
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log("Password match:", isMatch);
 
     if (!isMatch) {
       return res.status(400).json({ message: "Invalid username or password" });
     }
-    
-    res.status(201).json({ message: "Login successful", user: newUser });
-    // If login is successful, return user data
+
     res.status(200).json({
       message: "Login successful",
       user: {
@@ -66,11 +63,11 @@ export const login = async (req, res) => {
         email: user.email,
       },
     });
-    console.log("Login",user);
 
   } catch (error) {
     console.error("Error:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
 
