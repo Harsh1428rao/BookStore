@@ -4,6 +4,6 @@ import { getAllItems } from '../controller/itemController.js'; // Corrected impo
 const router = express.Router();
 
 // Define routes
-router.get('/course', getAllItems);
+router.get('/', getAllItems);
 
 export default router;
