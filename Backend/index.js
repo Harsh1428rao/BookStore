@@ -28,7 +28,7 @@ mongoose.connect(URI, {
 // Routes
 app.use("/book", itemRoutes); // Corrected API path
 app.use('/user',authRoutes);
-app.use('/course',itemRoutes);// changes done here
+// app.use('/course',itemRoutes);// changes done here
 app.get('/', (req, res) => {
     res.send("🚀 Server is running...");
 });
